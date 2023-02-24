@@ -13,8 +13,6 @@ List.destroy_all
 Bookmark.destroy_all
 Movie.destroy_all if Rails.env.development?
 
-
-
 url = 'https://tmdb.lewagon.com/movie/top_rated'
 page_serialized = URI.open(url).read
 movies = JSON.parse(page_serialized)["results"]
@@ -28,5 +26,3 @@ movies.each do |movie|
   )
 end
 puts "Finished creating movies"
-
-puts "Create lists"
