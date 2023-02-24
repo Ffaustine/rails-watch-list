@@ -8,10 +8,12 @@
 
 require 'json'
 require 'open-uri'
-require 'faker'
 
+List.destroy_all
+Bookmark.destroy_all
 Movie.destroy_all if Rails.env.development?
-List.destroy_all if Rails.env.development?
+
+
 
 url = 'https://tmdb.lewagon.com/movie/top_rated'
 page_serialized = URI.open(url).read
@@ -28,9 +30,3 @@ end
 puts "Finished creating movies"
 
 puts "Create lists"
-
-5.times do
-  List.create!(
-    name: ["Drama", "Action", "Romance","Best movies"].sample
-  )
-end
