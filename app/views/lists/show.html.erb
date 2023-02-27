@@ -15,6 +15,11 @@
 <div>
   <% end %>
 </div>
-<%= link_to "Add a  movie", new_list_bookmark_path(@list)%>
+<%# <%= link_to "Add a  movie", new_list_bookmark_path(@list)%> %>
 
 </div>
+<%= simple_form_for [@list, @bookmark] do |f| %>
+          <%= f.association :movie, collection: Movie.where.not(id: @list.movies.ids),  prompt: "Select a movie" %>
+          <%= f.input :comment, placeholder: 'Enter a comment about the movie' %>
+          <%= f.submit class: "btn btn-flat" %>
+        <% end %>
